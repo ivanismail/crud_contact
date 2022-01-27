@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:crud_contact/app/models/contact_model.dart';
@@ -9,9 +8,17 @@ import 'package:get/get.dart';
 
 class ContactController extends GetxController {
   bool isCheckedTeman = false;
+  var detailArgs;
 
   List<DataListContact> listContact = [];
   List<DataListContact> listContactTemp = [];
+
+  TextEditingController dName = TextEditingController();
+  TextEditingController dEmail = TextEditingController();
+  TextEditingController dHP = TextEditingController();
+  TextEditingController dNote = TextEditingController();
+  bool isCheckedKantor = false;
+  bool isCheckedKecil = false;
 
   @override
   void onInit() {
@@ -47,6 +54,10 @@ class ContactController extends GetxController {
       this.listContactTemp = this.listContact;
     });
 
+    update();
+  }
+
+  void geDetailContact() async {
     update();
   }
 }

@@ -13,6 +13,13 @@ class ContactDetailView extends StatefulWidget {
 
 class _ContactDetailViewState extends State<ContactDetailView> {
   final ContactController controller = Get.find<ContactController>();
+
+  @override
+  void initState() {
+    this.controller.detailArgs = Get.arguments;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +31,16 @@ class _ContactDetailViewState extends State<ContactDetailView> {
         child: PageWrapper(
           child: Column(
             children: [
-              OutlineTextField(
-                hintText: 'Nama Lengkap',
-                labelText: 'Nama Lengkap',
+              GetBuilder<ContactController>(
+                init: ContactController(),
+                initState: (_) {},
+                builder: (_) {
+                  return OutlineTextField(
+                    hintText: 'Nama Lengkap',
+                    labelText: 'Nama Lengkap',
+                    controller: this.controller.dName,
+                  );
+                },
               ),
               OutlineTextField(
                 hintText: 'Email',
@@ -52,6 +66,14 @@ class _ContactDetailViewState extends State<ContactDetailView> {
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 title: Text("Teman Kecil"),
+                value: controller.isCheckedTeman,
+                onChanged: (value) => true,
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              CheckboxListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text("Teman SMA"),
                 value: controller.isCheckedTeman,
                 onChanged: (value) => true,
                 controlAffinity: ListTileControlAffinity.leading,

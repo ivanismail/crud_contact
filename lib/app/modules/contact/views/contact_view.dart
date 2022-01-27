@@ -89,8 +89,8 @@ class ContactCard extends StatelessWidget {
                         child: Row(
                           children: List.generate(current.labels?.length ?? 0,
                               (index) {
-                            return PillType(
-                                typeTeman: current.labels!.first.toString());
+                            String type = (current.labels![index]);
+                            return PillType(typeTeman: type);
                           }).toList(),
                         ),
                       ),
