@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'package:crud_contact/app/models/contact_model.dart';
+import 'package:crud_contact/app/restapi/contact_api.dart';
+import 'package:crud_contact/app/utils/ajax.dart';
 import 'package:get/get.dart';
 
 class ContactController extends GetxController {
@@ -26,6 +32,21 @@ class ContactController extends GetxController {
       //         .contains(key.toLowerCase()))
       //     .toList();
     }
+    update();
+  }
+
+  void getListContact() async {
+    http.Response? res = await Ajax.get(ContactApi.getContact);
+    print(res!.body);
+
+    ContactModel contactModel = ContactModel.fromJson(res.body);
+
+    contactModel.data!.forEach((element) {
+      this.listContact.add(element);
+
+      this.listContactTemp = this.listContact;
+    });
+
     update();
   }
 }

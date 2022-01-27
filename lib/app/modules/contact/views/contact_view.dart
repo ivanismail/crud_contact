@@ -16,6 +16,12 @@ class _ContactViewState extends State<ContactView> {
   final ContactController controller = Get.find<ContactController>();
 
   @override
+  void initState() {
+    super.initState();
+    this.controller.getListContact();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -48,49 +54,55 @@ class ContactCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Container(
-        child: InkWell(
-          onTap: () => Get.toNamed(
-            Routes.CONTACT_DETAIL,
-            arguments: this.current,
+    return Column(
+      children: [
+        Container(
+          width: Get.width,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Container(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  this.current.name.toString(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 8),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Container(
-                    child: Row(
-                      children:
-                          List.generate(current.labels?.length ?? 0, (index) {
-                        return PillType(typeTeman: current.labels.toString());
-                      }).toList(),
+            child: InkWell(
+              onTap: () => Get.toNamed(
+                Routes.CONTACT_DETAIL,
+                arguments: this.current,
+              ),
+              child: Container(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      this.current.name.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        child: Row(
+                          children: List.generate(current.labels?.length ?? 0,
+                              (index) {
+                            return PillType(
+                                typeTeman: current.labels!.first.toString());
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
+        SizedBox(height: 12)
+      ],
     );
   }
 }
