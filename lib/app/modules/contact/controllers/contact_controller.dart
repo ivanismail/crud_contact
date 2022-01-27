@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ContactController extends GetxController {
-  //TODO: Implement ContactController
+  bool isCheckedTeman = false;
 
   final count = 0.obs;
   @override
