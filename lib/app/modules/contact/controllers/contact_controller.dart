@@ -1,7 +1,11 @@
+import 'package:crud_contact/app/models/contact_model.dart';
 import 'package:get/get.dart';
 
 class ContactController extends GetxController {
   bool isCheckedTeman = false;
+
+  List<DataListContact> listContact = [];
+  List<DataListContact> listContactTemp = [];
 
   @override
   void onInit() {

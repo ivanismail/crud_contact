@@ -1,3 +1,4 @@
+import 'package:crud_contact/app/models/contact_model.dart';
 import 'package:crud_contact/app/routes/app_pages.dart';
 import 'package:crud_contact/app/widgets/page_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -21,53 +22,106 @@ class _ContactViewState extends State<ContactView> {
         title: Text('Contact'),
         centerTitle: true,
       ),
-      body: PageWrapper(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: Get.width,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Container(
-                child: InkWell(
-                  onTap: () => Get.toNamed(Routes.CONTACT_DETAIL),
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Nama',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Container(
-                            child: PillType(
-                              typeTeman: 'Teman Kantor',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            ListContacts(controller: controller),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(Routes.CONTACT_ADD),
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class ContactCard extends StatelessWidget {
+  final DataListContact current;
+  final ContactController controller;
+  const ContactCard({
+    Key? key,
+    required this.current,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: Get.width,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        child: InkWell(
+          onTap: () => Get.toNamed(
+            Routes.CONTACT_DETAIL,
+            arguments: this.current,
+          ),
+          child: Container(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  this.current.name.toString(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 8),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                    child: Row(
+                      children:
+                          List.generate(current.labels?.length ?? 0, (index) {
+                        return PillType(typeTeman: current.labels.toString());
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ListContacts extends StatelessWidget {
+  final ContactController controller;
+  const ListContacts({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: PageWrapper(
+        child: ListView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          primary: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: this.controller.listContactTemp.length,
+          // itemCount: 10,
+          itemBuilder: (context, index) {
+            DataListContact current = this.controller.listContactTemp[index];
+
+            return ContactCard(
+              current: current,
+              controller: controller,
+            );
+          },
+        ),
       ),
     );
   }
