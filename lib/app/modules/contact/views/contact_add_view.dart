@@ -29,18 +29,22 @@ class _ContactAddViewState extends State<ContactAddView> {
               OutlineTextField(
                 hintText: 'Nama Lengkap',
                 labelText: 'Nama Lengkap',
+                controller: this.controller.dNameCon,
               ),
               OutlineTextField(
                 hintText: 'Email',
                 labelText: 'Email',
+                controller: this.controller.dEmailCon,
               ),
               OutlineTextField(
                 hintText: 'No Handphone',
                 labelText: 'No Handphone',
+                controller: this.controller.dHPCon,
               ),
               OutlineTextField(
                 hintText: 'Catatan',
                 labelText: 'Catatan',
+                controller: this.controller.dNoteCon,
               ),
               CheckboxListTile(
                 dense: true,
@@ -62,6 +66,7 @@ class _ContactAddViewState extends State<ContactAddView> {
                 width: Get.width,
                 child: SolidButton(
                   text: 'Simpan',
+                  onTap: controller.addContact,
                 ),
               ),
             ],
