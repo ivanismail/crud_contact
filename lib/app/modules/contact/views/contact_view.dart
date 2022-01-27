@@ -6,7 +6,14 @@ import 'package:get/get.dart';
 
 import '../controllers/contact_controller.dart';
 
-class ContactView extends GetView<ContactController> {
+class ContactView extends StatefulWidget {
+  @override
+  _ContactViewState createState() => _ContactViewState();
+}
+
+class _ContactViewState extends State<ContactView> {
+  final ContactController controller = Get.find<ContactController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,51 +21,53 @@ class ContactView extends GetView<ContactController> {
         title: Text('Contact'),
         centerTitle: true,
       ),
-      body: Center(
-        child: PageWrapper(
-          child: Column(
-            children: [
-              Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Container(
-                  child: InkWell(
-                    onTap: () => Get.toNamed(Routes.CONTACT_DETAIL),
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Nama',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 16,
+      body: PageWrapper(
+        child: Column(
+          children: [
+            Container(
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                child: InkWell(
+                  onTap: () => Get.toNamed(Routes.CONTACT_DETAIL),
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Nama',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Container(
+                            child: PillType(
+                              typeTeman: 'Teman Kantor',
                             ),
                           ),
-                          SizedBox(height: 8),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Container(
-                              child: PillType(
-                                typeTeman: 'Teman Kantor',
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(Routes.CONTACT_ADD),
+        child: Icon(Icons.add),
       ),
     );
   }

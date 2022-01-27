@@ -3,18 +3,25 @@ import 'package:get/get.dart';
 class ContactController extends GetxController {
   bool isCheckedTeman = false;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
   }
 
   @override
-  void onReady() {
-    super.onReady();
-  }
+  void onSearchAppBar(String value) {
+    String key = value.trim();
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+    if (key.isEmpty) {
+      // this.listMyProductTemp = this.listMyProduct;
+    } else {
+      // this.listMyProductTemp = this
+      //     .listMyProduct
+      //     .where((element) => element.product!.productName!
+      //         .toLowerCase()
+      //         .contains(key.toLowerCase()))
+      //     .toList();
+    }
+    update();
+  }
 }

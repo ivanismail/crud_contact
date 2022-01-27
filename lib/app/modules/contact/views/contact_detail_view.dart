@@ -20,48 +20,50 @@ class _ContactDetailViewState extends State<ContactDetailView> {
         title: Text('Contact Detail'),
         centerTitle: true,
       ),
-      body: PageWrapper(
-        child: Column(
-          children: [
-            OutlineTextField(
-              hintText: 'Nama Lengkap',
-              labelText: 'Nama Lengkap',
-            ),
-            OutlineTextField(
-              hintText: 'Email',
-              labelText: 'Email',
-            ),
-            OutlineTextField(
-              hintText: 'No Handphone',
-              labelText: 'No Handphone',
-            ),
-            OutlineTextField(
-              hintText: 'Catatan',
-              labelText: 'Catatan',
-            ),
-            CheckboxListTile(
-              dense: true,
-              contentPadding: EdgeInsets.zero,
-              title: Text("Teman Kantor"),
-              value: controller.isCheckedTeman,
-              onChanged: (value) => true,
-              controlAffinity: ListTileControlAffinity.leading,
-            ),
-            CheckboxListTile(
-              dense: true,
-              contentPadding: EdgeInsets.zero,
-              title: Text("Teman Kecil"),
-              value: controller.isCheckedTeman,
-              onChanged: (value) => true,
-              controlAffinity: ListTileControlAffinity.leading,
-            ),
-            // Container(
-            //   width: Get.width,
-            //   child: OutlineButton(
-            //     text: 'Update'.tr,
-            //   ),
-            // ),
-          ],
+      body: SingleChildScrollView(
+        child: PageWrapper(
+          child: Column(
+            children: [
+              OutlineTextField(
+                hintText: 'Nama Lengkap',
+                labelText: 'Nama Lengkap',
+              ),
+              OutlineTextField(
+                hintText: 'Email',
+                labelText: 'Email',
+              ),
+              OutlineTextField(
+                hintText: 'No Handphone',
+                labelText: 'No Handphone',
+              ),
+              OutlineTextField(
+                hintText: 'Catatan',
+                labelText: 'Catatan',
+              ),
+              CheckboxListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text("Teman Kantor"),
+                value: controller.isCheckedTeman,
+                onChanged: (value) => true,
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              CheckboxListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text("Teman Kecil"),
+                value: controller.isCheckedTeman,
+                onChanged: (value) => true,
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              // Container(
+              //   width: Get.width,
+              //   child: OutlineButton(
+              //     text: 'Update'.tr,
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
