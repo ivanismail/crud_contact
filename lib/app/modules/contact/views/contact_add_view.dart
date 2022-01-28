@@ -19,7 +19,7 @@ class _ContactAddViewState extends State<ContactAddView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact Detail'),
+        title: Text('Add Contact'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -50,7 +50,7 @@ class _ContactAddViewState extends State<ContactAddView> {
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 title: Text("Teman Kantor"),
-                value: controller.isCheckedTeman,
+                value: controller.isCheckedKantorCon,
                 onChanged: (value) => true,
                 controlAffinity: ListTileControlAffinity.leading,
               ),
@@ -58,7 +58,15 @@ class _ContactAddViewState extends State<ContactAddView> {
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 title: Text("Teman Kecil"),
-                value: controller.isCheckedTeman,
+                value: controller.isCheckedKecilCon,
+                onChanged: (value) => true,
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              CheckboxListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text("Teman SMA"),
+                value: controller.isCheckedTemanCon,
                 onChanged: (value) => true,
                 controlAffinity: ListTileControlAffinity.leading,
               ),
