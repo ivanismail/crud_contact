@@ -38,6 +38,24 @@ class ContactController extends SearchStateMixin {
     super.onInit();
   }
 
+  void onTapCheckedKantor(bool valueCheck) {
+    print(valueCheck);
+    isCheckedKantorCon = valueCheck;
+    update();
+  }
+
+  void onTapCheckedKecil(bool valueCheck) {
+    print(valueCheck);
+    isCheckedKecilCon = valueCheck;
+    update();
+  }
+
+  void onTapCheckedSMA(bool valueCheck) {
+    print(valueCheck);
+    isCheckedTemanCon = valueCheck;
+    update();
+  }
+
   void onSearchAppBar(String value) {
     String key = value.trim();
 
