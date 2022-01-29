@@ -1,5 +1,6 @@
 import 'package:crud_contact/app/models/contact_model.dart';
 import 'package:crud_contact/app/routes/app_pages.dart';
+import 'package:crud_contact/app/widgets/appbar.dart';
 import 'package:crud_contact/app/widgets/page_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -12,39 +13,47 @@ class ContactView extends StatefulWidget {
   _ContactViewState createState() => _ContactViewState();
 }
 
-class _ContactViewState extends State<ContactView> {
+class _ContactViewState extends State<ContactView>
+    with SingleTickerProviderStateMixin {
   final ContactController controller = Get.find<ContactController>();
 
   @override
   void initState() {
     super.initState();
-    this.controller.getListContact();
+    this.controller.getListContact(this);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Contact'),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            GetBuilder<ContactController>(
-              init: ContactController(),
-              initState: (_) {},
-              builder: (_) {
-                return ListContacts(controller: controller);
-              },
+    return GetBuilder<ContactController>(
+      init: ContactController(),
+      initState: (_) {},
+      builder: (_) {
+        return Scaffold(
+          appBar: this.controller.isSearching
+              ? MyAppBar.field(
+                  focusNode: this.controller.appBarSearchingFocusNode,
+                  elevation: 0,
+                  onTapClose: this.controller.changeStateSearch,
+                  onChange: this.controller.onSearchAppBar,
+                )
+              : MyAppBar.search(
+                  'Contact',
+                  elevation: 0,
+                  onTapSearch: this.controller.changeStateSearch,
+                  showBackButton: false,
+                ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [ListContacts(controller: controller)],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(Routes.CONTACT_ADD),
-        child: Icon(Icons.add),
-      ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => Get.toNamed(Routes.CONTACT_ADD),
+            child: Icon(Icons.add),
+          ),
+        );
+      },
     );
   }
 }

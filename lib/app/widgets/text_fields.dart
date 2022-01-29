@@ -43,6 +43,7 @@ class SolidTextField extends StatelessWidget {
         children: [
           Flexible(
             child: TextField(
+              style: TextStyle(color: Colors.white),
               onTap: this.onTap,
               readOnly: this.readOnly,
               focusNode: focusNode,

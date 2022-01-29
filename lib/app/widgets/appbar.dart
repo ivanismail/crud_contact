@@ -14,22 +14,23 @@ class MyAppBar {
     return AppBar(
       titleSpacing: showBackButton ? 0 : 12,
       elevation: elevation,
-      leading: showBackButton
-          ? IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios_new_sharp,
-                // color: HondaColor.netral9(),
-                size: 16,
-              ),
-              onPressed: () => Get.back(),
-            )
-          : null,
+      // leading: showBackButton
+      //     ? IconButton(
+      //         icon: Icon(
+      //           Icons.arrow_back_ios_new_sharp,
+      //           // color: HondaColor.netral9(),
+      //           size: 16,
+      //         ),
+      //         onPressed: () => Get.back(),
+      //       )
+      //     : null,
       title: SolidTextField(
         hintText: 'Ketik untuk melakukan pencarian',
+        textHintColor: Colors.white,
         focusNode: focusNode,
         onChange: onChange,
       ),
-      // backgroundColor: HondaColor.netral1(),
+      backgroundColor: Colors.blue,
       bottom: bottom,
       actions: [
         TextButton(
@@ -46,7 +47,7 @@ class MyAppBar {
           onPressed: onTapClose,
           child: Icon(
             Icons.close,
-            // color: HondaColor.primary(),
+            color: Colors.white,
           ),
         ),
       ],
@@ -79,7 +80,7 @@ class MyAppBar {
         style: TextStyle(
           // color: HondaColor.netral9(),
           fontWeight: FontWeight.w600,
-          fontSize: 16,
+          fontSize: 20,
         ),
       ),
       // backgroundColor: HondaColor.netral1(),
@@ -100,10 +101,10 @@ class MyAppBar {
             child: IconButton(
               icon: Icon(
                 Icons.search,
-                // color: HondaColor.netral9(),
-                size: 16,
+                color: Colors.white,
+                size: 24,
               ),
-              onPressed: () {},
+              onPressed: onTapSearch,
             )),
       ],
     );

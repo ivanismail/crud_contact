@@ -1,6 +1,6 @@
 import 'package:crud_contact/app/models/create_contact_model.dart';
+import 'package:crud_contact/app/utils/search_state_mixin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:crud_contact/app/models/contact_model.dart';
@@ -8,7 +8,7 @@ import 'package:crud_contact/app/restapi/contact_api.dart';
 import 'package:crud_contact/app/utils/ajax.dart';
 import 'package:get/get.dart';
 
-class ContactController extends GetxController {
+class ContactController extends SearchStateMixin {
   var detailArgs;
 
   List<DataListContact> listContact = [];
@@ -38,19 +38,17 @@ class ContactController extends GetxController {
     super.onInit();
   }
 
-  @override
   void onSearchAppBar(String value) {
     String key = value.trim();
 
     if (key.isEmpty) {
-      // this.listMyProductTemp = this.listMyProduct;
+      this.listContactTemp = this.listContact;
     } else {
-      // this.listMyProductTemp = this
-      //     .listMyProduct
-      //     .where((element) => element.product!.productName!
-      //         .toLowerCase()
-      //         .contains(key.toLowerCase()))
-      //     .toList();
+      this.listContactTemp = this
+          .listContact
+          .where((element) =>
+              element.name!.toLowerCase().contains(key.toLowerCase()))
+          .toList();
     }
     update();
   }
@@ -65,7 +63,7 @@ class ContactController extends GetxController {
     update();
   }
 
-  void getListContact() async {
+  Future<dynamic> getListContact(TickerProvider vsync) async {
     http.Response? res = await Ajax.get(ContactApi.getContact);
     print(res!.body);
 
