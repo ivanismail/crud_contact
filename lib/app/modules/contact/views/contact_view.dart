@@ -31,7 +31,13 @@ class _ContactViewState extends State<ContactView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListContacts(controller: controller),
+            GetBuilder<ContactController>(
+              init: ContactController(),
+              initState: (_) {},
+              builder: (_) {
+                return ListContacts(controller: controller);
+              },
+            ),
           ],
         ),
       ),
@@ -66,7 +72,7 @@ class ContactCard extends StatelessWidget {
             child: InkWell(
               onTap: () => Get.toNamed(
                 Routes.CONTACT_DETAIL,
-                arguments: this.current,
+                arguments: current,
               ),
               child: Container(
                 padding: EdgeInsets.all(8),

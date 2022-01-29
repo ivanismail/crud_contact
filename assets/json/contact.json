@@ -1,0 +1,57 @@
+{
+    "success": true,
+    "data": [
+        {
+            "contactId": "xbnd12-1232ns9",
+            "name": "Ivan Ismail",
+            "email": "ivanismail2@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note ivan",
+            "labels": ["Teman Kantor"]
+        },
+        {
+            "contactId": "xbnd12-1232n4k",
+            "name": "Yazid M. Ibrahim",
+            "email": "yazid@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note yazid",
+            "labels": ["Teman Kantor","Teman SMA"]
+        },
+        
+        {
+            "contactId": "xbnd12-1232n4k",
+            "name": "Soleh SMA",
+            "email": "yazid@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note yazid",
+            "labels": ["Teman SMA"]
+        },
+        {
+            "contactId": "xbnd12-1232n4k",
+            "name": "Soleh Kecil",
+            "email": "yazid@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note yazid",
+            "labels": ["Teman Kecil","Teman SMA"]
+        },
+        {
+            "contactId": "xbnd12-1232n4k",
+            "name": "Soleh",
+            "email": "yazid@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note yazid",
+            "labels": ["Teman Kecil","Teman SMA","Teman Kantor"]
+        },
+        {
+            "contactId": "xbnd12-1232n2k",
+            "name": "Hafidz",
+            "email": "hafidz@gmail.com",
+            "phoneNumber": "0895810030066",
+            "notes": "note hafidz",
+            "labels": ["Teman Kecil"]
+        }
+        
+    ],
+    "message": "Success",
+    "code": 200
+}

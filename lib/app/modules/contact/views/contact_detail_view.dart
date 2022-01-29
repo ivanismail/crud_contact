@@ -16,7 +16,7 @@ class _ContactDetailViewState extends State<ContactDetailView> {
 
   @override
   void initState() {
-    this.controller.detailArgs = Get.arguments;
+    this.controller.geDetailContact();
     super.initState();
   }
 
@@ -29,62 +29,59 @@ class _ContactDetailViewState extends State<ContactDetailView> {
       ),
       body: SingleChildScrollView(
         child: PageWrapper(
-          child: Column(
-            children: [
-              GetBuilder<ContactController>(
-                init: ContactController(),
-                initState: (_) {},
-                builder: (_) {
-                  return OutlineTextField(
+          child: GetBuilder<ContactController>(
+            init: ContactController(),
+            initState: (_) {},
+            builder: (_) {
+              return Column(
+                children: [
+                  OutlineTextField(
                     hintText: 'Nama Lengkap',
                     labelText: 'Nama Lengkap',
                     controller: this.controller.dName,
-                  );
-                },
-              ),
-              OutlineTextField(
-                hintText: 'Email',
-                labelText: 'Email',
-              ),
-              OutlineTextField(
-                hintText: 'No Handphone',
-                labelText: 'No Handphone',
-              ),
-              OutlineTextField(
-                hintText: 'Catatan',
-                labelText: 'Catatan',
-              ),
-              CheckboxListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                title: Text("Teman Kantor"),
-                value: controller.isCheckedKantor,
-                onChanged: (value) => true,
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-              CheckboxListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                title: Text("Teman Kecil"),
-                value: controller.isCheckedKecil,
-                onChanged: (value) => true,
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-              CheckboxListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                title: Text("Teman SMA"),
-                value: controller.isCheckedTeman,
-                onChanged: (value) => true,
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-              // Container(
-              //   width: Get.width,
-              //   child: OutlineButton(
-              //     text: 'Update'.tr,
-              //   ),
-              // ),
-            ],
+                  ),
+                  OutlineTextField(
+                    hintText: 'Email',
+                    labelText: 'Email',
+                    controller: this.controller.dEmail,
+                  ),
+                  OutlineTextField(
+                    hintText: 'No Handphone',
+                    labelText: 'No Handphone',
+                    controller: this.controller.dHP,
+                  ),
+                  OutlineTextField(
+                    hintText: 'Catatan',
+                    labelText: 'Catatan',
+                    controller: this.controller.dNote,
+                  ),
+                  CheckboxListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                    title: Text("Teman Kantor"),
+                    value: this.controller.isCheckedKantor,
+                    onChanged: (value) => true,
+                    controlAffinity: ListTileControlAffinity.leading,
+                  ),
+                  CheckboxListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                    title: Text("Teman Kecil"),
+                    value: this.controller.isCheckedKecil,
+                    onChanged: (value) => true,
+                    controlAffinity: ListTileControlAffinity.leading,
+                  ),
+                  CheckboxListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                    title: Text("Teman SMA"),
+                    value: this.controller.isCheckedTeman,
+                    onChanged: (value) => true,
+                    controlAffinity: ListTileControlAffinity.leading,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
